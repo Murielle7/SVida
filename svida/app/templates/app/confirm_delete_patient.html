@@ -1,0 +1,9 @@
+<h2>Tem certeza que deseja excluir o paciente {{ patient.name }}?</h2>
+<p>Esta ação é irreversível.</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Excluir Paciente</button>
+</form>
+
+<a href="{% url 'select_patient_for_vital_signs' %}" class="btn btn-secondary">Cancelar</a>

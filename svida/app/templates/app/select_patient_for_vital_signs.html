@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecionar Paciente para Adicionar Sinais Vitais</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 1rem;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        main {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+        h2 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .patient-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9f9f9;
+        }
+        .patient-item p {
+            margin: 0;
+            font-weight: bold;
+        }
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #fff;
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        .error p {
+            color: red;
+            font-size: 0.9rem;
+        }
+        .messages {
+            margin-bottom: 20px;
+        }
+        .alert-success {
+            background-color: #28a745;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        p {
+            margin-bottom: 0.5rem;
+        }
+        a {
+            text-decoration: none;
+            margin: 0.5rem 0;
+        }
+        @media (min-width: 768px) {
+            .patient-item {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h2>Selecionar Paciente para Adicionar Sinais Vitais</h2>
+
+        <!-- Lista de pacientes -->
+        {% for patient in patients %}
+            <div class="patient-item">
+                <p>{{ patient.name }}</p>
+                
+                <!-- Link para adicionar sinais vitais -->
+                <a href="{% url 'add_vital_sign' patient.id %}" class="btn btn-primary">Adicionar Sinais Vitais</a>
+
+                <!-- Link para editar dados do paciente -->
+                <a href="{% url 'edit_patient' patient.id %}" class="btn btn-primary">Editar</a>
+
+                <!-- Link para excluir paciente -->
+                <a href="{% url 'delete_patient' patient.id %}" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir este paciente?')">Excluir Paciente</a>
+            </div>
+        {% endfor %}
+
+        <!-- Caso não haja pacientes -->
+        {% if not patients %}
+            <p>Nenhum paciente cadastrado.</p>
+        {% endif %}
+
+        <a href="{% url 'menu' %}" class="btn btn-secondary">Voltar ao Menu</a>
+    </main>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            padding: 2rem;
+        }
+        .menu-item {
+            background-color: #fff;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .menu-item a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1.2rem;
+        }
+        .menu-item a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bem-vindo ao Menu</h1>
+    </header>
+    <main>
+        <div class="menu-item">
+            <a href="{% url 'add_patient' %}">Adicionar Paciente</a>
+        </div>
+
+        <!-- Link "Adicionar Sinais Vitais" aparece uma vez -->
+        <div class="menu-item">
+            <a href="{% url 'select_patient_for_vital_signs' %}">Adicionar Sinais Vitais</a>
+        </div>
+
+        <h2>Pacientes</h2>
+        {% for patient in patients %}
+        <div class="menu-item">
+            <a href="{% url 'vital_sign_history' patient_id=patient.id %}">Histórico de Sinais Vitais de {{ patient.name }}</a>
+        </div>
+        {% endfor %}
+    
+        <div class="menu-item">
+            <a href="{% url 'logout' %}">Sair</a>
+        </div>
+    </main>
+</body>
+</html>

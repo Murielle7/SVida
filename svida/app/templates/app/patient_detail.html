@@ -1,0 +1,11 @@
+<h2>Detalhes do Paciente: {{ patient.name }}</h2>
+
+<p><strong>Nome:</strong> {{ patient.name }}</p>
+<p><strong>Idade:</strong> {{ patient.age }}</p>
+<p><strong>Gênero:</strong> {{ patient.gender }}</p>
+<p><strong>Telefone:</strong> {{ patient.contact }}</p>
+
+<!-- Link para editar o paciente -->
+<a href="{% url 'edit_patient' patient.id %}" class="btn btn-primary">Editar Paciente</a>
+
+<a href="{% url 'menu' %}" class="btn btn-secondary">Voltar ao Menu</a>

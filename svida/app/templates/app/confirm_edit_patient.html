@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Alteração</title>
+</head>
+<body>
+    <h1>Confirmar Alteração</h1>
+    <p>Você tem certeza de que deseja salvar as seguintes alterações?</p>
+
+    <h2>Dados Atuais</h2>
+    <ul>
+        <li>Nome: {{ patient.name }}</li>
+        <li>Idade: {{ patient.age }}</li>
+        <li>Gênero: {{ patient.gender }}</li>
+        <li>Contato: {{ patient.contact }}</li>
+    </ul>
+
+    <h2>Novos Dados</h2>
+    <ul>
+        <li>Nome: {{ form.cleaned_data.name }}</li>
+        <li>Idade: {{ form.cleaned_data.age }}</li>
+        <li>Gênero: {{ form.cleaned_data.gender }}</li>
+        <li>Contato: {{ form.cleaned_data.contact }}</li>
+    </ul>
+
+    <form method="POST" action="{% url 'save_edit_patient' patient_id=patient.id %}">
+        {% csrf_token %}
+        <!-- Campos do formulário -->
+        <button type="submit">Salvar</button>
+    </form>
+    
+</body>
+</html>
