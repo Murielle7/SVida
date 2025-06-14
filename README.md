@@ -26,7 +26,7 @@ Dica: Use um ambiente virtual para isolar as dependências do projeto.
 
 **🚀 Passos para Executar o Projeto Localmente**
 1. Abrir o terminal e navegar até o diretório do projeto:
-cd C:\Users\user\Downloads\SVida-main\SVida-main\svida
+cd C:\Users\user\Downloads\SVida-main\SVida-main\svida ------------------------ Adicionar o caminho correto em que o arquivo foi descompactado.
 2. Rodar o servidor de desenvolvimento do Django:
 *//python manage.py runserver//*
 
